@@ -42,11 +42,11 @@ def logout_user(request):
 
 
 def register_user(request):
-    user_form = SignUpForm(request.POST or None)
+    user = SignUpForm(request.POST or None)
     # profile_form = ProfileForm(request.POST or None)
     if request.method == 'POST':
       # profile_form = ProfileForm(request.POST, instance=request.user.profile)
-      if user_form.is_valid():
+      if user.is_valid():
         # user = user_form.save()
         # user.is_active = True
         user.save()
@@ -56,21 +56,18 @@ def register_user(request):
         # profile.user = user
         # profile.save()
 
-        username = user_form.cleaned_data['username']
-        password = user_form.cleaned_data['password1']
+        username = user.cleaned_data['username']
+        password = user.cleaned_data['password1']
         user = authenticate(username=username, password=password)
         login(request, user)
         messages.success(request, ('You Have Successfully Registered.'))
         return redirect('home')
           
     else:
-        # user_form = SignUpForm()
+        user = SignUpForm()
         # # profile_form = ProfileForm(request.POST, instance=request.user.profile)
          
-        context = {
-        "form": user_form,
-        # "profile_form": profile_form,
-        }
+    context = {"form": user}
     return render(request, 'authenticate/register.html', context)
 
 """ 
