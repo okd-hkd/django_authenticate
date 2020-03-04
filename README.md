@@ -1,7 +1,7 @@
 # django_authenticate_app
 
-This is an app only for registering new uer, logging in/lout, edit user profile and password.
+This is a simple app allowing only for registering new user, logging in/lout, editing user profile and passwords.
 
-git clone 
-pythn3 manage.py runserver
+1. git clone 
+2. pythn3 manage.py runserver
 
